@@ -3,10 +3,10 @@ body {
   font-size: 18px;
   line-height: 1.6;
   color: #444;
-  padding: 0px;
+  padding: 0 10px;
+  max-width: 10%;
 }
 
 h1 {
 	margin: 40px auto;
-	font-family: 
 }

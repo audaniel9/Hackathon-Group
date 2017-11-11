@@ -1,14 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+
 body {
-  margin: 40px auto;
-  font-size: 22px;
-  line-height: 1.6;
+  text-align: center;
+  background-color: #a0db8e;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 18px;
+  margin: 5% 25%;
   color: #444;
-  padding: 0 10px;
-  max-width: 80%;
+}
+
+.formContainer {
+  text-align: center;
+}
+
+.formBox {
+  display:inline-block;
+  text-align: left;
+}
+
+fieldset {
+  border: 2px solid;
+  border-color: #444;
+}
+
+legend {
+  font-weight: bold;
+}
+
+label{
+  display:inline-block;
+  width:130px;
+  text-align: right;
 }
 
 h2 {
-	font-size: 18px;
-	display: block;
-	font-weight: bold;
+  font-size:40px;
 }

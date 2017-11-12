@@ -27,7 +27,6 @@ h1 {
   background-color:antiquewhite;
   margin:0px 0px;
   height: 110px;
-  vertical-align: bottom;
 }
 
 fieldset {
@@ -46,7 +45,19 @@ label{
 }
 
 h2 {
+  display: flex;
   font-size:40px;
+  justify-content: center;
+}
+
+footer {
+  background-color:antiquewhite;
+  font-size: 18px;
+  width: 100%;
+  height: 5%;
+  bottom: 0px;
+  padding-top: 10px;
+  position: fixed;
 }
 
 /*error.html*/

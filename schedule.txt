@@ -1,0 +1,32 @@
+users model
+    - id
+	- last name
+	- first name
+    - username
+    - email address
+    - state
+    - city
+    - zip code
+    - address
+
+shelter model
+    - id
+    - shelter name
+	- username 
+    - email address
+    - state
+    - city
+    - zip code
+    - address
+    - description
+    - jobs(its own model??)
+
+views
+    - login/log out
+    - registration 
+        - animal 
+        - user
+    - homepage 
+
+run tests
+first part

@@ -3,13 +3,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shelter Registration</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
   </head>
   <body>
     <h1>SHELTEROO</h1>
     <h2 style="margin-top:3%;">Shelter Registration</h2>
     <div class="formBox">
-      <form>
+      <form method="post">
         <label>Username:&nbsp;</label><input type="input" name="username">
         <label>Password:&nbsp;</label><input type="input" name="password"> 
         <br><br><br>
@@ -79,7 +79,7 @@
         </textarea>
         <br><br><br>
         <div align="middle">
-        <input class="button" type="submit" name="submitform" method="post" style="width:100px;height:30px;" >
+        <input class="button" type="submit" name="submitform" style="width:100px;height:30px;" >
         </div>
       </form>
     </div>

@@ -31,9 +31,6 @@ def login():
 
 @main.route("/registration/shelter", methods = ['POST','GET'])
 def registration():
-    if request.method == 'GET':
-        return render_template("shelterRegistration.html")
-
     if request.method == 'POST':
         s_username = str(request.form['username'])
         s_psw = str(request.form['password'])
@@ -45,19 +42,22 @@ def registration():
         s_description = str(request.form['message'])
 
 
-        if Shelters.query.filter_by(username = s_username):
+        if Shelters.query.filter_by(username = s_username).count() > 0:
             return render_template("shelterRegistration.html", error = "the username already exists please choose a UNIQUE one foo")
 
-        if Shelters.query.filter_by(email_address = s_email):
+        if Shelters.query.filter_by(email_address = s_email).count() > 0:
             return render_template("shelterRegistration.html", error =  "the e-mail is already registered; you probably got hacked lel")
 
         else:
-            shelter = Shelters(username = request.form['username'],email_address=self.new_user['email'],state=self.new_user['state']
-                    ,zip_code=self.new_user['zipCode'],address=self.new_user['address'],city=self.new_user['city'],
-                    password=self.new_user['password'])
+            shelter = Shelters(username = request.form['username'],email_address=request.form['email'],state=request.form['state']
+                    ,zip_code=request.form['zipCode'],address=request.form['address'],city=request.form['city'],
+                    password=request.form['password'])
             Shelters.query.add(shelter)
             Shelters.query.commit()
-            return redirect(url_for('main.login'))
+            return render_template('login.html')
+    else:
+        return render_template("shelterRegistration.html")
+
 
 
 @main.route("/registration/volunteer", methods = ['POST','GET'])
@@ -75,17 +75,17 @@ def volunteer_registration():
         u_city = str(request.form['city'])
         u_state = str(request.form['state'])
         u_zipcode = str(request.form['zip'])
-        u_description = str(request.form['submitform'])
+        u_description = str(request.form['message'])
 
         fishlist = {u_firstname, u_lastname, u_username, u_psw, u_email, u_address, u_city, u_state, u_zipcode,
                     u_description}
 
         if len(u_firstname) == 0:
-            render_template("error.html")
+            return  'fail' #render_template("error.html")
 
         for item in fishlist:
             if len(item) == 0:
-                render_template("error.html")
+                return 'fail' #render_template("error.html")
 
         return render_template("index.html")
 
@@ -97,6 +97,24 @@ def volunteer_registration():
 
     # else:
 # return redirect(url_for('where to redirect'))
+@main.route('/jobs',methods = ['GET'])
+def jobs():
+    if User.query.filter(username=request.form['username']).count() > 0:
+        user = User.query.filter(username=request.form['username'])
+
+        for column in row.__table__.columns:
+            if str(column.name) == 'state':
+                state =  str(getattr(row, column.name))
+            if str(column.name) == 'city':
+                city =  str(getattr(row, column.name))
+
+        jobs = {}
+        shelters = shelters.query.filter_by(city=city,state=states)
+
+
+
+        ##get closest jobs
+
 
 @main.route("/logout")
 def logout():

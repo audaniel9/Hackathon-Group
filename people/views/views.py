@@ -1,5 +1,5 @@
 from flask import Blueprint, current_app, render_template,request, session, flash,request,redirect,url_for
-from people.models.models import Users, Shelters
+from people.models.models import Users, Shelters,jobs
 
 main = Blueprint('main',__name__)
 
@@ -104,17 +104,33 @@ def jobs():
 
         for column in row.__table__.columns:
             if str(column.name) == 'state':
-                state =  str(getattr(row, column.name))
+                state = str(getattr(row, column.name))
             if str(column.name) == 'city':
-                city =  str(getattr(row, column.name))
-
+                city = str(getattr(row, column.name))
+				
         jobs = {}
-        shelters = shelters.query.filter_by(city=city,state=states)
-
-
-
+        shelters = Shelters.query.filter_by(city=city,state=states)
+		
+		SELECT
+		d= {};
+		
+		for s in shelters:
+			s = str(shelters.shelter_name)
+			d[s] = {s.city,s.address,s.zip_code,s.state}
+		
+		closest_shelters = {}
+		#use oscar() #returns distance from you
+		#if(oscar():
+			closest_shelters[d.key()] = oscar(d.key())
+		
+		keylist = closest_shelters.keys()
+		keylist.sort()
+		
+		finallist ={}
+		for key in keylist:
+			finallist[closest_shelters[key]] = key;
+		
         ##get closest jobs
-
 
 @main.route("/logout")
 def logout():

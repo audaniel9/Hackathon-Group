@@ -91,6 +91,8 @@ img {
 .navbar {
   background-color: #9096a0;
   overflow: hidden;
+  border: 1px solid;
+  border-color: #828282;
 }
 
 .navbar a {
@@ -123,4 +125,16 @@ img {
 .rightsidebar {
   margin-left: 85%;
   position: absolute;
+}
+
+.button {
+  background-color: #1dad1f;
+  border-style: none;
+  border-radius: 5px;
+  font-size: 17px;
+  color: #d6d6d6;
+}
+
+.button:hover {
+  background-color: #3bba3d;
 }

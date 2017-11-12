@@ -2,6 +2,7 @@ from flask import Blueprint, current_app, render_template,request, session, flas
 from people.models.models import Users, Shelters,Jobs
 import requests
 
+
 main = Blueprint('main',__name__)
 
 
@@ -123,12 +124,10 @@ def jobs():
         finallist ={}
         for key in keylist:
         	finallist[closest_shelters[key]] = key
-
         ##get closest jobs
         return "sucess"
     else:
         return "failure"
-
 
 
 @main.route("/logout")

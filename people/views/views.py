@@ -1,5 +1,6 @@
 from flask import Blueprint, current_app, render_template,request, session, flash,request,redirect,url_for
-from people.models.models import Users, Shelters
+from people.models.models import Users, Shelters,Jobs
+import requests
 
 main = Blueprint('main',__name__)
 
@@ -10,7 +11,7 @@ def index():
     if logged:
         return redirect(url_for('main.login'))
     else:
-        return render_template('login.html')
+        return render_template('index.html')
 
 @main.route('/login', methods = ["POST", "GET"])
 def login():
@@ -19,15 +20,15 @@ def login():
         POST_PASSWORD = str(request.form['password'])
         if Shelters.query.filter_by(username=POST_USERNAME,password=POST_PASSWORD).first():
             session['logged_in'] = True
-            return  render_template('login.html',username=POST_USERNAME)
+            return  render_template('index.html',username=POST_USERNAME)
 
         elif Users.query.filter_by(username=POST_USERNAME,password=POST_PASSWORD).first():
             session['logged_in'] = True
-            return  render_template('login.html',username=POST_USERNAME)
+            return  render_template('index.html',username=POST_USERNAME)
         else:
-            return  render_template('index.html',error='invalid username or password')
+            return  render_template('login.html',error='invalid username or password')
     else:
-        return render_template('index.html')
+        return render_template('login.html')
 
 @main.route("/registration/shelter", methods = ['POST','GET'])
 def registration():
@@ -99,21 +100,35 @@ def volunteer_registration():
 # return redirect(url_for('where to redirect'))
 @main.route('/jobs',methods = ['GET'])
 def jobs():
-    if User.query.filter(username=request.form['username']).count() > 0:
-        user = User.query.filter(username=request.form['username'])
+    if Users.query.filter(username=request.form['username']).count() > 0:
+        user = Users.query.filter(username=request.form['username'])
 
         for column in row.__table__.columns:
             if str(column.name) == 'state':
-                state =  str(getattr(row, column.name))
+                state = str(getattr(row, column.name))
             if str(column.name) == 'city':
-                city =  str(getattr(row, column.name))
+                city = str(getattr(row, column.name))
 
         jobs = {}
-        shelters = shelters.query.filter_by(city=city,state=states)
+        shelters = Shelters.query.filter_by(city=city,state=states)
 
+        for shelter_name in shelters:
+            shelter_name = str(shelters.shelter_name)
+            shelters_in_area[shelter_name] = [s.city,s.address,s.zip_code,s.state]
 
+        closest_shelters[d.key()] = oscar(d.key())
+        keylist = closest_shelters.keys()
+        keylist.sort()
+
+        finallist ={}
+        for key in keylist:
+        	finallist[closest_shelters[key]] = key
 
         ##get closest jobs
+        return "sucess"
+    else:
+        return "failure"
+
 
 
 @main.route("/logout")

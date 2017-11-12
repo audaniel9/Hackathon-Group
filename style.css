@@ -5,17 +5,30 @@ body {
   background-color: #a0db8e;
   font-family: 'Oxygen', sans-serif;
   font-size: 18px;
-  margin: 5% 25%;
   color: #444;
+  margin: 0px 0px;
 }
 
 .formContainer {
   text-align: center;
+  margin: 3% 25% 5%;
 }
 
 .formBox {
   display:inline-block;
   text-align: left;
+}
+
+h1 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 60px;
+  background-color:antiquewhite;
+  margin:0px 0px;
+  height: 150px;
+  vertical-align: bottom;
+  
 }
 
 fieldset {

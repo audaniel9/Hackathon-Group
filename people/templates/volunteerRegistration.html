@@ -3,13 +3,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Volunteer Registration</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
   </head>
   <body>
     <h1>SHELTEROO</h1>
     <h2 style="margin-top:3%;">Volunteer Registration</h2>
     <div class="formBox">
-    <form>
+    <form method="post">
       <label>First Name:&nbsp;</label><input type="input" name="firstname">
       <label>Last Name:&nbsp;</label><input type="input" name="lastname"> 
       <br><br><br>
@@ -78,7 +78,7 @@
       <label>Zip Code:&nbsp;</label><input type="input" name="zip">
       <br><br><br>
       <div align="middle">
-        <input class="button" type="submit" name="submitform" method="post" style="width:100px;height:30px;" >
+        <input class="button" type="submit" name="submitform" style="width:100px;height:30px;" >
       </div>
     </form>
     </div>

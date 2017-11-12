@@ -48,3 +48,9 @@ label{
 h2 {
   font-size:40px;
 }
+
+/*error.html*/
+.errorbox {
+  margin-top: 80px;
+  color: red;
+}
